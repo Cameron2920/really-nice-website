@@ -3,7 +3,7 @@
  */
 function Rules(){
     this.haveCirclesCollided = function(circleA, circleB){
-        return circleA.position.calculateDistance(circleB.position) <= (circleA.radius + circleB.radius);
+        return circleA.position.calculateDistance(circleB.position) <= (circleA.radius + circleB.radius) && (circleA.radius - circleB.radius) < circleA.position.calculateDistance(circleB.position);
     };
 
     this.hasGrowingCircleDestroyedObstacle = function(growingCircle, obstacle){

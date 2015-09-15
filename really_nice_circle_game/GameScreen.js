@@ -10,11 +10,10 @@ gameScreen = (function(){
         obstacles = [];
         growingCircles = [];
         obstacles.push(new Obstacle(50, 10, 5, false, false));
-        growingCircles.push(new GrowingCircle(200, 100, 5, 5));
     }
 
     function draw(ctx) {
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         drawGrowingCircles(ctx);
         drawObstacles(ctx);
@@ -39,8 +38,16 @@ gameScreen = (function(){
     }
 
     function update(currentTime, previousTime){
+        handleMouseClicks();
         updateGrowingCircles(currentTime, previousTime);
         updateObstacles();
+    }
+
+    function handleMouseClicks(){
+        if(mouseClicked){
+            growingCircles.push(new GrowingCircle(mouseClickPosition.x, mouseClickPosition.y, 5, 5));
+            mouseClicked = false;
+        }
     }
 
     function updateObstacles(){
@@ -67,17 +74,13 @@ gameScreen = (function(){
 
             if(growingCircle.circle.radius < EPSILON){
                 growingCircles.splice(growingCirclesIndex);
+                continue;
             }
 
             for(var growingCirclesCollisionIndex = 0; growingCirclesCollisionIndex < growingCircles.length && growingCircles[growingCirclesCollisionIndex] != growingCircles[growingCirclesIndex]; growingCirclesCollisionIndex++) {
                 if(rules.haveCirclesCollided(growingCircles[growingCirclesCollisionIndex].circle, growingCircles[growingCirclesIndex].circle)){
-                    if(growingCircles[growingCirclesCollisionIndex].rateOfGrowth > 0){
-                        growingCircles[growingCirclesCollisionIndex].rateOfGrowth *= -1;
-                    }
-
-                    if(growingCircles[growingCirclesIndex].rateOfGrowth > 0){
-                        growingCircles[growingCirclesIndex].rateOfGrowth *= -1;
-                    }
+                    growingCircles[growingCirclesCollisionIndex].rateOfGrowth *= -1;
+                    growingCircles[growingCirclesIndex].rateOfGrowth *= -1;
                 }
             }
 
