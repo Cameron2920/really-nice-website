@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="some_nice_css.css">
+    <title></title>
+</head>
+<body class="almighty-container">
+    <audio id="do-it" preload="auto">
+        <source src="doit_sound.mp3" type="audio/mpeg">
+    </audio>
+    <div class="video-container-left">
+        <video class="teletubbie teletubbie-top" loop>
+            <source src="TeleTubbies%20bailando%20electro%20-%20Dandolo%20todo.mp4" type="video/mp4">
+        </video>
+        <video class="teletubbie teletubbie-bottom" loop muted>
+            <source src="TeleTubbies%20bailando%20electro%20-%20Dandolo%20todo.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="shia-container-center">
+        <h1 class="just-do-it-h1">JUST DO IT!</h1>
+        <img class="shia" src="shialaboeuf.jpg">
+    </div>
+    <div class="video-container-right">
+        <video class="teletubbie teletubbie-top" loop muted>
+            <source src="TeleTubbies%20bailando%20electro%20-%20Dandolo%20todo.mp4" type="video/mp4">
+        </video>
+        <video class="teletubbie teletubbie-bottom" loop muted>
+            <source src="TeleTubbies%20bailando%20electro%20-%20Dandolo%20todo.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="fireworks.js"></script>
+    <script type="text/javascript">
+        var doIt = document.getElementById("do-it");
+        doIt.play();
+        doIt.addEventListener("ended", function(){
+            var teletubbies = document.getElementsByClassName("teletubbie");
+
+            for(var teletubbieIndex = 0; teletubbieIndex < teletubbies.length; teletubbieIndex++){
+                teletubbies[teletubbieIndex].play();
+            }
+        });
+    </script>
+</body>
+</html>

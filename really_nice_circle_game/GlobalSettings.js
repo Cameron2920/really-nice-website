@@ -1,0 +1,4 @@
+var SCALE = 1;
+var SCREEN_WIDTH = 500 * SCALE;
+var SCREEN_HEIGHT = 500 * SCALE;
+var EPSILON = 0.1 * SCALE;
