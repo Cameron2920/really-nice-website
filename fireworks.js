@@ -34,7 +34,7 @@ $(document).mousemove(function(e) {
 // launch more rockets!!!
 $(document).mousedown(function(e) {
     for (var i = 0; i < 5; i++) {
-        launchFrom(Math.random() * SCREEN_WIDTH * 2 / 3 + SCREEN_WIDTH / 6);
+        launchFrom(SCREEN_WIDTH * 2 / 5);
     }
 });
 
@@ -47,11 +47,11 @@ function launchFrom(x) {
     if (rockets.length < 10) {
         var rocket = new Rocket(x);
         rocket.explosionColor = Math.floor(Math.random() * 360 / 10) * 10;
-        rocket.vel.y = Math.random() * -3 - 4;
-        rocket.vel.x = Math.random() * 6 - 3;
+        rocket.vel.y = Math.random() * -50 - 50;
+        rocket.vel.x = Math.random() * 100 - 50;
         rocket.size = 8;
         rocket.shrink = 0.999;
-        rocket.gravity = 0.01;
+        rocket.gravity = 4.20;
         rockets.push(rocket);
     }
 }
